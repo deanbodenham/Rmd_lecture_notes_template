@@ -1,0 +1,24 @@
+## Normal Distribution
+
+The probability density function for the standard normal distribution is (blanked out): 
+\begin{fequation}
+        \label{eqn:normpdf}
+        \tbontb{
+        f(x) = \frac{1}{\sqrt{2\pi}} \int_{-\infty}^{x} e^{-x^2}  \dd  x.
+        % THIS IS COMMENTED OUT
+        }
+\end{fequation}
+Equation \eqref{eqn:normpdf} is awesome. 
+
+
+Here is a plot of the probability density function of a standard normal:
+```{r normpdf, echo=F}
+    set.seed(1)
+    n <- 100
+    xmin <- -4
+    xmax <- -xmin
+    by <- 0.1
+    x <- seq(from=xmin, to=xmax, by=by)
+    y <- dnorm(x)
+    plot(x, y, type='l', col="blue", ylab="Density", xlab="x, domain")
+```

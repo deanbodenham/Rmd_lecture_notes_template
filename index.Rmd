@@ -1,0 +1,62 @@
+--- 
+title: "Lecture Notes"
+author: "Author Name Goes Here"
+date: "`r Sys.Date()`"
+documentclass: book
+description: "Lecture Notes"
+bibliography: ["refs.bib"]
+biblio-style: "apalike"
+link-citations: true
+geometry: margin=1in
+params:
+    showtextparam:
+        value: x
+    useframe:
+        value: x
+    gaptextisblue:
+        value: x
+    showsidenotes:
+        value: x
+    moreboxspace:
+        value: x
+    vhval:
+        value: x
+---
+
+
+<!--THIS LINE SETS THE BOOLEAN PARAMETER; THIS IS CONTROLLED IN compileRmd.R
+-->
+`r paste0("\\setboolean{showtext}{", params$showtextparam, "}")`
+`r paste0("\\setboolean{useframe}{", params$useframe, "}")`
+`r paste0("\\setboolean{gaptextisblue}{", params$gaptextisblue, "}")`
+`r paste0("\\setboolean{showsidenotes}{", params$showsidenotes, "}")`
+`r paste0("\\setboolean{moreboxspace}{", params$moreboxspace, "}")`
+`r paste0("\\renewcommand{\\addboxspace}{\\vspace{", params$vhval, "cm}}")`
+
+\definecolor{fancyTextColor}{HTML}{4284f5}
+\definecolor{hightlightColor}{HTML}{FFFF66}
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+    comment = "#>",
+    collapse = TRUE, # this puts the R output in the same grey box
+    # cache = TRUE, # turning off cache to allow caption to be regenerated
+    fig.align="center", 
+    fig.width = 6,
+    fig.asp = 0.618,  # 1 / phi
+    #background="F7F7F7",
+    fig.show = "hold"
+)
+
+options("width"=60, digits=5)
+
+# These packages are used.
+library(xtable)
+library(rmarkdown)
+library(bookdown)
+library(grid)
+library(gridExtra)
+library(tikzDevice)
+library(ggplot2, quietly=T)
+```
+

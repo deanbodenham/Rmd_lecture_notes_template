@@ -1,0 +1,65 @@
+\clearpage
+## Cars
+
+Here is some `cars` data:
+
+```{r setcarscaption, echo=F, cache=F}
+carsfigtabcap <- paste0("Caption text for Figure and Table")
+carsfigcap <- 'A figure caption'
+carstabcap <- 'A table caption'
+```
+
+```{r carsfigureandtable, fig.cap=carsfigtabcap, fig.subcap= c(carsfigcap, carstabcap), out.width = '.49\\linewidth', echo = F, fig.align='center', fig.pos='H'}
+# from 
+# https://stackoverflow.com/questions/53659160/r-markdown-positioning-table-and-plot-side-by-side
+library(gridExtra)
+library(grid)
+
+# first plot
+plot(mpg ~ hp, data = mtcars)
+
+# second plot
+grid.newpage()
+grid.table(head(mtcars[,1:6]), theme = ttheme_minimal())
+```
+
+Look at Figure \ref{fig:carsfigureandtable}, it contains a figure (a) and a table (b).
+
+
+Here is a box of text, using `ftext` command:
+
+
+\sidenote{Don't take the following too seriously.}
+\begin{ftext}
+\tbontb{
+\begin{minipage}{\textwidth}
+There are three types of lies---lies, damn lies, and statistics. 
+There are three types of lies---lies, damn lies, and statistics
+There are three types of lies---lies, damn lies, and statistics
+There are three types of lies---lies, damn lies, and statistics
+There are three types of lies---lies, damn lies, and statistics
+\end{minipage}
+}
+\end{ftext}
+
+Here is an aligned equation, need to use in `ftext`:
+\begin{ftext}
+    \begin{align}
+        \tbontb{y}  & \tbontb{= 2} \label{eqn:blank} \\
+        z &= 2 
+    \end{align}
+\end{ftext}
+Equation \eqref{eqn:blank} is blank in an align environment.
+
+
+
+Using `fequation`:
+\begin{fequation}
+t = 1
+\end{fequation}
+
+It might be useful to include notes on the side, in the margin. These can be done using `sidenote`.
+\sidenote{Here is an example of a sidenote}
+And more text goes here, and one can read the note in the margin to remember certain points.
+
+

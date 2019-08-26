@@ -1,0 +1,30 @@
+## Gamma distribution
+
+The gamma distribution has two parameters, shape $k$ and scale $\theta$, and is denoted $\Gamma(k, \theta)$.
+Data for a $\Gamma(1, 2)$ distribution can be generated as follows:
+
+```{r gammadata, echo=TRUE}
+# We set the seed here
+set.seed(1)
+k <- 1
+ylab <-  "Value" # set elsewhere
+theta <- 2
+x <- rgamma(10, shape=k, scale=theta)
+print(x)
+```
+
+And here is the data plotted in Figure \ref{fig:gammadataplot}:
+
+```{r setgammadataplotcaption, echo=F, cache=F}
+gammadataplot_cap <- paste0("Gamma data for $\\Gamma(", k, ", ", theta, ")$")
+```
+
+```{r gammadataplot, echo=F, fig.cap=gammadataplot_cap, fig.pos='H'}
+#could have set:
+#fig.cap="Gamma data for $\\Gamma(1, 2)$"
+set.seed(1)
+x <- rgamma(10, shape=k, scale=theta)
+plot(x, ylab="Value", xlab="Index")
+```
+
+Figure \ref{fig:gammadataplot} should  be above this line.

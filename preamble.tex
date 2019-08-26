@@ -1,0 +1,180 @@
+% preamble for book
+\usepackage{color}
+\usepackage{ifthen}
+\usepackage{geometry}
+\usepackage{geometry}
+%\usepackage[top=2cm, bottom=1.3cm, left=5cm, right=0.5cm, heightrounded,
+%  marginparwidth=4.6cm, marginparsep=3mm]{geometry}
+\usepackage{marginnote}
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage{subfig}
+\usepackage{xcolor}
+\usepackage{framed}
+
+% mdframed
+%\usepackage{mdframed}
+\usepackage[framemethod=tikz]{mdframed}
+\mdfsetup{skipabove=2pt,skipbelow=5pt}
+
+\mdfdefinestyle{myframestyle}{%
+    outerlinewidth=0.1pt
+}
+
+\newcommand{\proglang}[1]{\textsf{#1}}
+\newcommand{\pkg}[1]{\textbf{#1}}
+\newcommand{\faq}[1]{FAQ~\ref{#1}}
+\newcommand{\dd}{\mathrm{d}}
+
+% takes care of gaps
+% to modify the boolean, needs to be passed from makeRmd.R
+\newboolean{gaptextisblue}
+\setboolean{gaptextisblue}{true} 
+
+% to modify the boolean, needs to be passed from makeRmd.R
+\newboolean{useframe}
+\setboolean{useframe}{true}
+
+\newboolean{showtext}
+\setboolean{showtext}{true} 
+
+\newboolean{showsidenotes}
+\setboolean{showsidenotes}{true} 
+
+
+\newboolean{moreboxspace}
+\setboolean{moreboxspace}{true} 
+
+\newcommand{\makeblank}[1]{ \vphantom{#1} }
+\newcommand{\makeblue}[1]{\textcolor{blue}{#1}}
+\newcommand{\makered}[1]{\textcolor{red}{#1}}
+\newcommand{\makenormalcolour}[1]{#1}
+
+% text in gaps:
+\newcommand{\gaptext}{\ifthenelse{\boolean{gaptextisblue}}{\makeblue}{\makenormalcolour}}
+
+% to be or not to be - controls the display of gappy text
+\newcommand{\tbontb}{\ifthenelse{\boolean{showtext}}{\gaptext}{\makeblank}}
+
+% notes in the margin
+%https://tex.stackexchange.com/questions/29125/how-to-get-marginnote-to-use-the-whole-margin-space
+\newcommand{\makemarginnote}[1]{\marginnote{\footnotesize\makeblue{#1}}}
+\newcommand{\sidenote}{\ifthenelse{\boolean{showsidenotes}}{\makemarginnote}{}}
+\setlength{\marginparwidth}{1.7cm}
+
+
+% Add box space
+\newcommand{\addboxspace}{\vspace{0.2cm}}
+\newcommand{\maybeaddboxspace}{\ifthenelse{\boolean{moreboxspace}}{\addboxspace}{}}
+
+
+% framed equation
+\newenvironment{fequation}
+    {\ifthenelse{\boolean{useframe}}{\begin{mdframed}[style=myframestyle]}{}
+    \maybeaddboxspace
+    \begin{equation}
+        }
+        {
+    \end{equation} 
+    \maybeaddboxspace
+    \ifthenelse{\boolean{useframe}}{\end{mdframed}}{}
+    }
+
+% general framebox for text/align
+\newenvironment{ftext}
+    {\ifthenelse{\boolean{useframe}}{\begin{mdframed}[style=myframestyle]}{}
+        }
+        {
+    \ifthenelse{\boolean{useframe}}{\end{mdframed}}{}
+    }
+
+
+%%=========================================================================%%
+%% Changing the code colour scheme
+%%=========================================================================%%
+%\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+%\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+
+%% Don't know
+%\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+%\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+%\newcommand{\BuiltInTok}[1]{#1}
+
+%% Not sure
+%\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+
+%% Comment
+%\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+
+%\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+%\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+%\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+%\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+%\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+%\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+%\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+%\newcommand{\ExtensionTok}[1]{#1}
+%\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+
+%% R Functions actually seem to be keywords
+%\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+%\newcommand{\ImportTok}[1]{#1}
+%\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+
+%% These include functions such as rgamma
+%\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+
+%\newcommand{\NormalTok}[1]{#1}
+%\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+%\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+%\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+%\newcommand{\RegionMarkerTok}[1]{#1}
+%\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+%\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+%%=========================================================================%%
+
+%% Strings
+%\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+    
+%\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+%\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+%\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+
+%% Change comments to dark grey (black is (0,0,0))
+\renewcommand{\CommentTok}[1]{\textcolor[rgb]{0.3,0.3,0.3}{\textit{#1}}}
+%% Brown, but not italics
+%\renewcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+
+%\renewcommand{\KeywordTok}[1]{\textcolor[rgb]{0,0,0}{\textbf{#1}}}
+
+%% FFAFFF, NiceLightPurple, 255, 175, 255
+%\renewcommand{\KeywordTok}[1]{\textcolor[RGB]{255,175,255}{\textbf{#1}}}
+
+%\renewcommand{\FunctionTok}[1]{\textcolor[rgb]{0,0,0}{\textbf{#1}}}
+%\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+
+%% Make string bold
+%\renewcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{\textbf{#1}}}
+
+%% Make string ArrowGreen
+% 87FF87, RGB = 135, 255, 135
+%\renewcommand{\StringTok}[1]{\textcolor[RGB]{135,255,135}{\textbf{#1}}}
+%\renewcommand{\StringTok}[1]{\textcolor[RGB]{135,255,135}{#1}}
+
+
+%% Make numbers orange
+%% Hex E5786D
+\renewcommand{\DecValTok}[1]{\textcolor[RGB]{229,120,109}{#1}}
+%% Hex CB4B16
+\renewcommand{\DecValTok}[1]{\textcolor[RGB]{203,75,22}{#1}}
+
+% framed align
+% will not work,  need to do manually
+%\newenvironment{ffalign}
+%    {\ifthenelse{\boolean{useframe}}{\begin{mdframed}}{}
+%    \begin{align}
+%        }
+%        {
+%    \end{align} 
+%    \ifthenelse{\boolean{useframe}}{\end{mdframed}}{}
+%    }

@@ -1,0 +1,30 @@
+# Distributions
+
+## How do I get started {#sec:getting-started}
+
+
+The \proglang{R} package \pkg{xtable} is useful.
+For a description of the bootstrap, see \citet{Efron1979Bootstrap}.
+A good book is \citep{CLRS}.
+This is Section \ref{sec:getting-started}.
+Check `index.Rmd` to see which R packages are loaded.
+
+
+
+```{r normpdffig_p, child='Rcode/normal.Rmd'}
+```
+
+
+
+```{r gammadata_p, child='Rcode/gamma.Rmd'}
+```
+
+
+
+```{r cars, child='Rcode/cars.Rmd'}
+```
+
+
+```{r lambdao, child='Rcode/tikz.Rmd'}
+```
+

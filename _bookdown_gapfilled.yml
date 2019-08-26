@@ -1,0 +1,8 @@
+book_filename: "lecturenotes_gapfilled.Rmd"
+
+rmd_files: ["index.Rmd",
+            "chapters/distributions.Rmd"]
+
+output_dir: "output_notes"
+
+delete_merged_file: true
