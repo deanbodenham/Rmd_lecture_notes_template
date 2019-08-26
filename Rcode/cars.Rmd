@@ -42,6 +42,9 @@ There are three types of lies---lies, damn lies, and statistics
 }
 \end{ftext}
 
+
+\sidenote{See the code for this `align` example for an example
+of creating a gapped `align`.}
 Here is an aligned equation, need to use in `ftext`:
 \begin{ftext}
     \begin{align}
